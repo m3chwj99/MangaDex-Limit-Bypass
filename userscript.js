@@ -13,9 +13,6 @@
 (function () {
     'use strict';
 
-    // Number before we do a reset of the number
-    const maxChapterLimit = 5;
-
     // get the localStorage limit data and parse it as JSON, if it exists
     let localStorageLimit = JSON.parse(localStorage.getItem('md-limit-data') || '{}');
 
@@ -33,16 +30,11 @@
 
     /**
      * data["0"] = chapter count
-     * data["1"] = I absolutely have no idea what it's for, but I will reset it as well just in case
+     * data["1"] = I absolutely have no idea what it's for, but I will reset it as well just in case (set it to 0 because it's what I see in the localStorage when I have not read any chapters, but it might be different for you, so if you have a different value, please let me know)
      */
-    localStorageLimit.data["0"] = localStorageLimit.data["0"] > maxChapterLimit ? 0 : localStorageLimit.data["0"];
-    localStorageLimit.data["1"] = localStorageLimit.data["1"] > maxChapterLimit ? 0 : localStorageLimit.data["1"];
+    localStorageLimit.data["0"] = 1;
+    localStorageLimit.data["1"] = 0;
 
-    if (localStorageLimit.data["0"] === 0 || localStorageLimit.data["1"] === 0) {
-        console.log('[m3chwj99] MangaDex Limit Bypass:  limit bypassed.');
-        return;
-    } else {
-        localStorage.setItem('md-limit-data', JSON.stringify(localStorageLimit));
-        console.log('[m3chwj99] MangaDex Limit Bypass');
-    }
+    localStorage.setItem('md-limit-data', JSON.stringify(localStorageLimit));
+    console.log('[m3chwj99] MangaDex Limit Bypass: limit reset successfully.' + ` Chapter count set to ${localStorageLimit.data["0"]} and the other value set to ${localStorageLimit.data["1"]}.`);
 })();

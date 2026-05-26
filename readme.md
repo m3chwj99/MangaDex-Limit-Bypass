@@ -16,14 +16,6 @@ MangaDex tracks the number of chapters you've read before displaying a pop-up th
 
 3. Save and make sure the script is enabled, that's it.
 
-## Configuration (if you want)
-
-At the top of the script, you can adjust the threshold before the reset kicks in:
-
-```js
-const maxChapterLimit = 5; // reset when counter exceeds this value
-```
-
 ## Notes
 
 - The script only runs on `https://mangadex.org/*`
